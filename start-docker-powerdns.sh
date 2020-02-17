@@ -1,2 +1,8 @@
 #!/bin/sh
-/usr/bin/docker run --name powerdns --rm -d -p 53:53/udp -p 53:53/tcp powerdns
+/usr/bin/docker run \
+	--name powerdns \
+	--rm \
+	--detach \
+	--publish 53:53/tcp \
+	--publish 53:53/udp \
+	powerdns-rpz
