@@ -16,13 +16,13 @@ The file "deteque-rpz.lua" is included in /etc/powerdns/  This is the file that 
 
 ````
 rpzMaster({"34.194.195.25","35.156.219.71"}, "drop.ip.dtq", {defpol=Policy.NXDOMAIN,refresh=900})
-# rpzMaster({"34.194.195.25","35.156.219.71"}, "coinblocker.srv", {defpol=Policy.NXDOMAIN,refresh=900})
-# rpzMaster({"34.194.195.25","35.156.219.71"}, "doh.dtq", {defpol=Policy.NXDOMAIN,refresh=900})
-# rpzMaster({"34.194.195.25","35.156.219.71"}, "porn.host.srv", {defpol=Policy.NXDOMAIN,refresh=900})
-# rpzMaster({"34.194.195.25","35.156.219.71"}, "torblock.srv", {defpol=Policy.NXDOMAIN,refresh=900})
+-- rpzMaster({"34.194.195.25","35.156.219.71"}, "coinblocker.srv", {defpol=Policy.NXDOMAIN,refresh=900})
+-- rpzMaster({"34.194.195.25","35.156.219.71"}, "doh.dtq", {defpol=Policy.NXDOMAIN,refresh=900})
+-- rpzMaster({"34.194.195.25","35.156.219.71"}, "porn.host.srv", {defpol=Policy.NXDOMAIN,refresh=900})
+-- rpzMaster({"34.194.195.25","35.156.219.71"}, "torblock.srv", {defpol=Policy.NXDOMAIN,refresh=900})
 ````
 
-The only RPZ zone that defaults to active in this configuration is the drop.ip.dtq.  To selectively activate any of the other zones remove the leading "#" character.  Please note that in order to access any of these zones you must first register an account with us and provide us with the IP address of your server.  Access to the servers is blocked by a firewall, so without an account you won't be able to connect. 
+The only RPZ zone that defaults to active in this configuration is the drop.ip.dtq.  To selectively activate any of the other zones remove the leading "--" characters.  Please note that in order to access any of these zones you must first register an account with us and provide us with the IP address of your server.  Access to the servers is blocked by a firewall, so without an account you won't be able to connect. 
 
 # Access restrictions
 The resolv.conf file has a setting that restricts who can query the server.  Without restricting access to your server you become an open recursive server and will most assuredly be exploited for use in denial of service attacks.  The default settings we provide allow queries to originate from RFC-1918 private addresses.  If you are going run this docker image on a public Internet address you will have to modify the line at the top of the /etc/powerdns/resolver.conf file and add *only* your hostname or network:
