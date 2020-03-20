@@ -5,4 +5,5 @@
 	--detach \
 	--publish 53:53/tcp \
 	--publish 53:53/udp \
-	deteque/powerdns-rpz
+	-v /etc/powerdns:/etc/powerdns \
+	x
