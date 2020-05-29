@@ -1,6 +1,6 @@
-FROM debian:stretch-slim
+FROM debian:buster-slim
 LABEL maintainer="Andrew Fried <afried@deteque.com>"
-ENV POWERDNS_VERSION 4.3.0
+ENV POWERDNS_VERSION 4.3.1
 
 RUN 	apt-get clean \
 	&& apt-get update \
@@ -24,7 +24,7 @@ RUN 	apt-get clean \
 COPY pdns.sources.list /etc/apt/sources.list.d/pdns.list
 COPY pdns /etc/apt/preferences.d/pdns
 
-RUN 	curl https://repo.powerdns.com/CBC8B383-pub.asc | apt-key add - \
+RUN 	curl https://repo.powerdns.com/FD380FBB-pub.asc | apt-key add - \
  	&& apt-get update \
  	&& apt-get install --no-install-recommends --no-install-suggests -y pdns-recursor 
 
