@@ -1,6 +1,6 @@
 FROM debian:buster-slim
 LABEL maintainer="Andrew Fried <afried@deteque.com>"
-ENV POWERDNS_VERSION 4.3.1
+ENV POWERDNS_VERSION 4.3.2
 
 RUN 	apt-get clean \
 	&& apt-get update \
