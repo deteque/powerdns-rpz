@@ -1,7 +1,7 @@
 FROM debian:buster-slim
 LABEL maintainer="Andrew Fried <afried@deteque.com>"
 ENV POWERDNS_VERSION 4.4.0
-ENV BUILD_DATE 2020-10-21
+ENV BUILD_DATE 2020-11-02
 
 RUN 	apt-get clean \
 	&& apt-get update \
