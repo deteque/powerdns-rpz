@@ -1,7 +1,7 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 LABEL maintainer="Andrew Fried <afried@deteque.com>"
 ENV POWERDNS_VERSION 4.5.5
-ENV BUILD_DATE 2021-07-31
+ENV BUILD_DATE 2021-08-15
 
 RUN 	apt-get clean \
 	&& apt-get update \
