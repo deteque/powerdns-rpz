@@ -1,7 +1,7 @@
-FROM debian:buster-slim
+FROM debian:bullseye-slim
 LABEL maintainer="Andrew Fried <afried@deteque.com>"
 ENV POWERDNS_VERSION 4.6.0
-ENV BUILD_DATE "2022-02-14"
+ENV BUILD_DATE "2022-02-19"
 
 RUN 	apt-get clean \
 	&& apt-get update \
@@ -23,7 +23,8 @@ RUN 	apt-get clean \
 		libboost-filesystem-dev \
 		libboost-system-dev \
 		libprotobuf-c-dev \
-		libprotobuf-dev 
+		libprotobuf-dev \
+		libreadline-dev
 
 # Install PowerDNS Recursor via their repository
 
