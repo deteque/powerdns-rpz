@@ -1,7 +1,7 @@
 FROM debian:bullseye-slim
 LABEL maintainer="Andrew Fried <afried@deteque.com>"
 ENV POWERDNS_VERSION 4.6.0
-ENV BUILD_DATE "2022-03-22"
+ENV BUILD_DATE "2022-03-24"
 
 RUN 	apt-get clean \
 	&& apt-get update \
@@ -10,7 +10,7 @@ RUN 	apt-get clean \
 		apt-transport-https \
 		ca-certificates \
 		curl \
-		gnupg2 \
+		gpgv \
 		lsb-release \
 		locate \
 		net-tools\
@@ -18,26 +18,70 @@ RUN 	apt-get clean \
 		rsync \
 		sipcalc \
 		vim \
+		pkg-config \
+		procps \
+		python3-pip \
+		apt-utils \
+		build-essential \
+		dnstop \
+		ethstats \
+		iftop \
+		libcap-dev \
+		libcurl4-openssl-dev \
+		libevent-dev \
+		libpcap-dev \
+		libreadline-dev \
+		libssl-dev \
+		libuv1-dev \
+		libxml2-dev \
+		sysstat \
 		wget \
+		python-ply \
+		git \
+		autoconf \
+		libtool \
 		libboost-context-dev \
 		libboost-filesystem-dev \
 		libboost-system-dev \
-		libprotobuf-c-dev \
-		libprotobuf-dev \
+		libboost-all-dev \
+		libedit-dev \
+		libboost-all-dev \
+		liblua5.1-0-dev \
 		libreadline-dev
 
-# Install PowerDNS Recursor via their repository
+RUN git clone https://github.com/google/protobuf \
+	&& git clone https://github.com/protobuf-c/protobuf-c \
+	&& git clone https://github.com/farsightsec/fstrm 
 
-COPY pdns.sources.list /etc/apt/sources.list.d/pdns.list
-COPY pdns /etc/apt/preferences.d/pdns
+RUN cd protobuf \
+	&& autoreconf -i && ./configure && make; make install \
+	&& cd .. \
+	&& ldconfig
 
-RUN 	curl https://repo.powerdns.com/FD380FBB-pub.asc | apt-key add - \
- 	&& apt-get update \
- 	&& apt-get install --no-install-recommends --no-install-suggests -y pdns-recursor 
+RUN cd protobuf-c \
+	&& autoreconf -i && ./configure && make; make install \
+	&& cd ..
 
-COPY recursor.conf /etc/powerdns/
-COPY deteque-rpz.lua /etc/powerdns/
+RUN cd fstrm \
+	&& autoreconf -i && ./configure && make; make install \
+	&& cd .. \
+	&& ldconfig \
+	&& sync
+
+RUN wget https://downloads.powerdns.com/releases/pdns-recursor-${POWERDNS_VERSION}.tar.bz2 \
+	&& tar -xvjf pdns-recursor-${POWERDNS_VERSION}.tar.bz2 \
+	&& cd pdns-recursor-${POWERDNS_VERSION} \
+	&& ./configure \
+		--enable-dnstap \
+	&& make \
+	&& make install \
+	&& rm -rf /tmp/powerdns* \
+	&& rm -rf /tmp/protobuf* \
+	&& rm -rf /tmp/fstrm* \
+	&& sync \
+	&& ldconfig 
+
 
 EXPOSE 53/tcp 53/udp
 
-CMD ["/usr/sbin/pdns_recursor","--daemon=no"]
+CMD ["/usr/local/sbin/pdns_recursor","--daemon=no","--config-dir=/etc/powerdns"]
