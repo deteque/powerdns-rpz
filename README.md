@@ -15,11 +15,11 @@ This docker image is "mostly" preconfigured to work out of the box.  In order to
 The file "deteque-rpz.lua" is included in /etc/powerdns/  This is the file that actually designates which RPZ zones the server will use and how to access them.  The file, as distributed, contains:
 
 ````
-rpzMaster({"34.194.195.25","35.156.219.71"}, "drop.ip.dtq", {defpol=Policy.NXDOMAIN,refresh=900})
--- rpzMaster({"34.194.195.25","35.156.219.71"}, "coinblocker.srv", {defpol=Policy.NXDOMAIN,refresh=900})
--- rpzMaster({"34.194.195.25","35.156.219.71"}, "doh.dtq", {defpol=Policy.NXDOMAIN,refresh=900})
--- rpzMaster({"34.194.195.25","35.156.219.71"}, "porn.host.srv", {defpol=Policy.NXDOMAIN,refresh=900})
--- rpzMaster({"34.194.195.25","35.156.219.71"}, "torblock.srv", {defpol=Policy.NXDOMAIN,refresh=900})
+rpzPrimary({"34.194.195.25","35.156.219.71"}, "drop.ip.dtq", {defpol=Policy.NXDOMAIN,refresh=900})
+-- rpzPrimary({"34.194.195.25","35.156.219.71"}, "coinblocker.srv", {defpol=Policy.NXDOMAIN,refresh=900})
+-- rpzPrimary({"34.194.195.25","35.156.219.71"}, "doh.dtq", {defpol=Policy.NXDOMAIN,refresh=900})
+-- rpzPrimary({"34.194.195.25","35.156.219.71"}, "porn.host.srv", {defpol=Policy.NXDOMAIN,refresh=900})
+-- rpzPrimary({"34.194.195.25","35.156.219.71"}, "torblock.srv", {defpol=Policy.NXDOMAIN,refresh=900})
 ````
 
 The only RPZ zone that defaults to active in this configuration is the drop.ip.dtq.  To selectively activate any of the other zones remove the leading "--" characters.  Please note that in order to access any of these zones you must first register an account with us and provide us with the IP address of your server.  Access to the servers is blocked by a firewall, so without an account you won't be able to connect. 
