@@ -49,7 +49,7 @@ RUN 	apt-get clean \
 		liblua5.1-0-dev \
 		libreadline-dev
 
-RUN git clone https://github.com/google/protobuf \
+RUN git clone --branch 21.x https://github.com/google/protobuf \
 	&& git clone https://github.com/protobuf-c/protobuf-c \
 	&& git clone https://github.com/farsightsec/fstrm 
 
