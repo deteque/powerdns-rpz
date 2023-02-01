@@ -1,7 +1,7 @@
 FROM debian:bullseye-slim
 LABEL maintainer="Andrew Fried <afried@deteque.com>"
-ENV POWERDNS_VERSION 4.8.0
-ENV BUILD_DATE "2022-12-21"
+ENV POWERDNS_VERSION 4.8.2
+ENV BUILD_DATE "2023-02-01"
 
 RUN 	apt-get clean \
 	&& apt-get update \
