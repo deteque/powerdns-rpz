@@ -1,7 +1,7 @@
-FROM debian:bullseye-slim
+FROM debian:bookworm-slim
 LABEL maintainer="Andrew Fried <afried@deteque.com>"
 ENV POWERDNS_VERSION 4.8.4
-ENV BUILD_DATE "2023-06-08"
+ENV BUILD_DATE "2023-06-22"
 
 RUN 	apt-get clean \
 	&& apt-get update \
@@ -25,7 +25,6 @@ RUN 	apt-get clean \
 		build-essential \
 		dnstop \
 		ethstats \
-		iftop \
 		libcap-dev \
 		libcurl4-openssl-dev \
 		libevent-dev \
@@ -36,7 +35,7 @@ RUN 	apt-get clean \
 		libxml2-dev \
 		sysstat \
 		wget \
-		python-ply \
+		python3-ply \
 		git \
 		autoconf \
 		libtool \
