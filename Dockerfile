@@ -1,7 +1,7 @@
 FROM debian:bookworm-slim
 LABEL maintainer="Andrew Fried <afried@deteque.com>"
-ENV POWERDNS_VERSION 4.8.4
-ENV BUILD_DATE "2023-06-30"
+ENV POWERDNS_VERSION 4.9.0
+ENV BUILD_DATE "2023-07-25"
 
 RUN 	apt-get clean \
 	&& apt-get update \
