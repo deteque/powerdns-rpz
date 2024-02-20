@@ -1,7 +1,7 @@
 FROM debian:bookworm-slim
 LABEL maintainer="Deteque <admin-deteque@spamhaus.com>"
-ENV POWERDNS_VERSION 4.9.2
-LABEL build_date "2023-11-30"
+ENV POWERDNS_VERSION 4.9.3
+LABEL build_date "2024-02-20"
 
 RUN 	apt-get clean \
 	&& apt-get update \
