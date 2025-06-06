@@ -1,7 +1,8 @@
 FROM debian:bookworm-slim
 LABEL maintainer="Deteque <admin-deteque@spamhaus.com>"
-ENV POWERDNS_VERSION 4.9.8
-LABEL build_date "2024-08-29"
+ENV POWERDNS_VERSION 4.9.9
+LABEL build_date "2025-06-06"
+# UPDATE to 5.2+ requires converting to YAML configuration
 
 RUN 	apt-get clean \
 	&& apt-get update \
